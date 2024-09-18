@@ -1,17 +1,12 @@
 import psycopg
-from psycopg.rows import dict_row
-from contextlib import asynccontextmanager
+from app.config import settings
 
-async def get_connection():
-    return await psycopg.AsyncConnection.connect(
-        "host=localhost dbname=postgres user=postgres password=abc123",
-        row_factory=dict_row
+def get_db():
+    conn = psycopg.connect(
+        host=settings.DB_HOST,
+        port=settings.DB_PORT,
+        dbname=settings.DB_NAME,
+        user=settings.DB_USER,
+        password=settings.DB_PASSWORD
     )
-
-@asynccontextmanager
-async def get_db():
-    conn = await get_connection()
-    try:
-        yield conn
-    finally:
-        await conn.close()
+    return conn

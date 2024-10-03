@@ -10,3 +10,6 @@ def create_user(db: Session, username: str, email: str, password_hash: str):
 
 def get_user(db: Session, user_id: int):
     return db.query(User).filter(User.user_id == user_id).first()
+
+def get_user_by_username_or_email(db: Session, username: str, email: str):
+    return db.query(User).filter((User.username == username) | (User.email == email)).first()

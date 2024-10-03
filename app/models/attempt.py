@@ -1,11 +1,14 @@
-from sqlalchemy import Column, Integer, ForeignKey, TIMESTAMP, String
-from sqlalchemy.sql import func
-from app.database.db import Base
+from sqlalchemy import Column, Integer, Boolean, Date, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 class Attempt(Base):
-    __tablename__ = "Attempts"
-    attempt_id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("Users.user_id"), nullable=False)
-    problem_id = Column(Integer, ForeignKey("Problems.problem_id"), nullable=False)
-    status = Column(String(50), nullable=False)  # e.g., 'Solved', 'Failed'
-    attempt_time = Column(TIMESTAMP(timezone=True), server_default=func.now())
+    __tablename__ = 'attempts'
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    item_id = Column(Integer, ForeignKey('items.id'), nullable=False)
+    time_taken = Column(Integer, nullable=False)
+    success = Column(Boolean, nullable=False)
+    date = Column(Date, nullable=False)
+    sol_used = Column(Boolean, nullable=False)

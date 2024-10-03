@@ -1,6 +1,10 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 class AttemptCreate(BaseModel):
     user_id: int
-    problem_id: int
-    status: str
+    item_id: int
+    time_taken: int
+    success: bool
+    date: datetime.date
+    sol_used: bool

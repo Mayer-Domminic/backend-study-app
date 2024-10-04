@@ -10,35 +10,37 @@ pip freeze > requirements.txt
 
 uvicorn app.main:app --reload
 
-│
-├── /app
-│   ├── /database            # Database setup
-│   │   └── db.py
-│   │   └── init_db.py
-│   │
-│   ├── /models              # SQLAlchemy models
-│   │   └── user.py
-│   │   └── problem.py
-│   │   └── user_problem.py
-│   │   └── attempt.py
-│   │
-│   ├── /crud                # Utility functions (CRUD operations)
-│   │   └── user.py
-│   │   └── problem.py
-│   │   └── attempt.py
-│   │
-│   ├── /routes              # FastAPI routes
-│   │   └── user_routes.py
-│   │   └── problem_routes.py
-│   │   └── attempt_routes.py
-│   │
-│   ├── /schemas             # Pydantic schemas for validation
-│   │   └── user.py
-│   │   └── problem.py
-│   │   └── attempt.py
-│   │
-│   └── main.py              # FastAPI entry point
-│
-└── requirements.txt         # List of dependencies
+cd study-app
+npm install
+npm run dev
 
-https://chatgpt.com/share/66fee7be-8b78-8005-a2b3-33f6f92d90df
+
+# Features:
+## weekly recap
+## email notis in the morning (newsletter style)
+## schedule X_item @ 4:00PM
+## todo's for review
+
+
+react-problemsolver/
+├── src/
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── input.tsx
+│   │   │   └── label.tsx
+│   │   ├── auth/
+│   │   │   ├── login-button.tsx
+│   │   │   ├── register-button.tsx
+│   │   │   ├── login-form.tsx
+│   │   │   └── register-form.tsx
+│   │   └── landing-card.tsx
+│   ├── lib/
+│   │   └── api.ts
+│   ├── App.tsx
+│   ├── index.tsx
+│   └── index.css
+├── package.json
+└── vite.config.ts

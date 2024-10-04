@@ -1,10 +1,20 @@
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import date
 
-class AttemptCreate(BaseModel):
+class AttemptBase(BaseModel):
     user_id: int
     item_id: int
+    tag: str
     time_taken: int
     success: bool
-    date: datetime.date
+    date: date
     sol_used: bool
+
+class AttemptCreate(AttemptBase):
+    pass
+
+class Attempt(AttemptBase):
+    id: int
+
+    class Config:
+        from_attributes = True

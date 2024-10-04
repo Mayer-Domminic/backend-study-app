@@ -1,0 +1,1490 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "FastAPI",
+      "version": "0.1.0"
+    },
+    "paths": {
+      "/users/": {
+        "post": {
+          "tags": [
+            "users"
+          ],
+          "summary": "Create User",
+          "operationId": "create_user_users__post",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "users"
+          ],
+          "summary": "Read Users",
+          "operationId": "read_users_users__get",
+          "parameters": [
+            {
+              "name": "skip",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 0,
+                "title": "Skip"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 100,
+                "title": "Limit"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "title": "Response Read Users Users  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users/{user_id}": {
+        "get": {
+          "tags": [
+            "users"
+          ],
+          "summary": "Read User",
+          "operationId": "read_user_users__user_id__get",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "users"
+          ],
+          "summary": "Delete User",
+          "operationId": "delete_user_users__user_id__delete",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/items/": {
+        "post": {
+          "tags": [
+            "items"
+          ],
+          "summary": "Create Item",
+          "operationId": "create_item_items__post",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "items"
+          ],
+          "summary": "Read Items",
+          "operationId": "read_items_items__get",
+          "parameters": [
+            {
+              "name": "skip",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 0,
+                "title": "Skip"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 100,
+                "title": "Limit"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Item"
+                    },
+                    "title": "Response Read Items Items  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/items/{item_id}": {
+        "get": {
+          "tags": [
+            "items"
+          ],
+          "summary": "Read Item",
+          "operationId": "read_item_items__item_id__get",
+          "parameters": [
+            {
+              "name": "item_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Item Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "items"
+          ],
+          "summary": "Update Item",
+          "operationId": "update_item_items__item_id__put",
+          "parameters": [
+            {
+              "name": "item_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Item Id"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "items"
+          ],
+          "summary": "Delete Item",
+          "operationId": "delete_item_items__item_id__delete",
+          "parameters": [
+            {
+              "name": "item_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Item Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/items/user/{user_id}": {
+        "get": {
+          "tags": [
+            "items"
+          ],
+          "summary": "Get User Items",
+          "operationId": "get_user_items_items_user__user_id__get",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            },
+            {
+              "name": "tag",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Tag"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Item"
+                    },
+                    "title": "Response Get User Items Items User  User Id  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/attempts/": {
+        "post": {
+          "tags": [
+            "attempts"
+          ],
+          "summary": "Create Attempt",
+          "operationId": "create_attempt_attempts__post",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Attempt"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "attempts"
+          ],
+          "summary": "Read Attempts",
+          "operationId": "read_attempts_attempts__get",
+          "parameters": [
+            {
+              "name": "skip",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 0,
+                "title": "Skip"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 100,
+                "title": "Limit"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Attempt"
+                    },
+                    "title": "Response Read Attempts Attempts  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/attempts/{attempt_id}": {
+        "get": {
+          "tags": [
+            "attempts"
+          ],
+          "summary": "Read Attempt",
+          "operationId": "read_attempt_attempts__attempt_id__get",
+          "parameters": [
+            {
+              "name": "attempt_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Attempt Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Attempt"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "attempts"
+          ],
+          "summary": "Update Attempt",
+          "operationId": "update_attempt_attempts__attempt_id__put",
+          "parameters": [
+            {
+              "name": "attempt_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Attempt Id"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Attempt"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "attempts"
+          ],
+          "summary": "Delete Attempt",
+          "operationId": "delete_attempt_attempts__attempt_id__delete",
+          "parameters": [
+            {
+              "name": "attempt_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Attempt Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/attempts/user/{user_id}": {
+        "get": {
+          "tags": [
+            "attempts"
+          ],
+          "summary": "Get User Attempts",
+          "operationId": "get_user_attempts_attempts_user__user_id__get",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            },
+            {
+              "name": "success",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Success"
+              }
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Start Date"
+              }
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "End Date"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Attempt"
+                    },
+                    "title": "Response Get User Attempts Attempts User  User Id  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/attempts/user/{user_id}/item/{item_id}": {
+        "get": {
+          "tags": [
+            "attempts"
+          ],
+          "summary": "Get User Item Attempts",
+          "operationId": "get_user_item_attempts_attempts_user__user_id__item__item_id__get",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            },
+            {
+              "name": "item_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Item Id"
+              }
+            },
+            {
+              "name": "success",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Success"
+              }
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Start Date"
+              }
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "End Date"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Attempt"
+                    },
+                    "title": "Response Get User Item Attempts Attempts User  User Id  Item  Item Id  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/settings/": {
+        "post": {
+          "tags": [
+            "settings"
+          ],
+          "summary": "Create Setting",
+          "operationId": "create_setting_settings__post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingCreate"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Setting"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/settings/{user_id}": {
+        "get": {
+          "tags": [
+            "settings"
+          ],
+          "summary": "Read Setting",
+          "operationId": "read_setting_settings__user_id__get",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Setting"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "settings"
+          ],
+          "summary": "Update Setting",
+          "operationId": "update_setting_settings__user_id__put",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingCreate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Setting"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "settings"
+          ],
+          "summary": "Delete Setting",
+          "operationId": "delete_setting_settings__user_id__delete",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/": {
+        "get": {
+          "summary": "Read Root",
+          "operationId": "read_root__get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Attempt": {
+          "properties": {
+            "user_id": {
+              "type": "integer",
+              "title": "User Id"
+            },
+            "item_id": {
+              "type": "integer",
+              "title": "Item Id"
+            },
+            "tag": {
+              "type": "string",
+              "title": "Tag"
+            },
+            "time_taken": {
+              "type": "integer",
+              "title": "Time Taken"
+            },
+            "success": {
+              "type": "boolean",
+              "title": "Success"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "title": "Date"
+            },
+            "sol_used": {
+              "type": "boolean",
+              "title": "Sol Used"
+            },
+            "id": {
+              "type": "integer",
+              "title": "Id"
+            }
+          },
+          "type": "object",
+          "required": [
+            "user_id",
+            "item_id",
+            "tag",
+            "time_taken",
+            "success",
+            "date",
+            "sol_used",
+            "id"
+          ],
+          "title": "Attempt"
+        },
+        "AttemptCreate": {
+          "properties": {
+            "user_id": {
+              "type": "integer",
+              "title": "User Id"
+            },
+            "item_id": {
+              "type": "integer",
+              "title": "Item Id"
+            },
+            "tag": {
+              "type": "string",
+              "title": "Tag"
+            },
+            "time_taken": {
+              "type": "integer",
+              "title": "Time Taken"
+            },
+            "success": {
+              "type": "boolean",
+              "title": "Success"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "title": "Date"
+            },
+            "sol_used": {
+              "type": "boolean",
+              "title": "Sol Used"
+            }
+          },
+          "type": "object",
+          "required": [
+            "user_id",
+            "item_id",
+            "tag",
+            "time_taken",
+            "success",
+            "date",
+            "sol_used"
+          ],
+          "title": "AttemptCreate"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "Item": {
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name"
+            },
+            "tag": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tag"
+            },
+            "difficulty": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Difficulty"
+            },
+            "number": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Number"
+            },
+            "src": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Src"
+            },
+            "item_id": {
+              "type": "integer",
+              "title": "Item Id"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "title": "Created At"
+            }
+          },
+          "type": "object",
+          "required": [
+            "name",
+            "item_id",
+            "created_at"
+          ],
+          "title": "Item"
+        },
+        "ItemCreate": {
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name"
+            },
+            "tag": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tag"
+            },
+            "difficulty": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Difficulty"
+            },
+            "number": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Number"
+            },
+            "src": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Src"
+            }
+          },
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "title": "ItemCreate"
+        },
+        "Setting": {
+          "properties": {
+            "user_id": {
+              "type": "integer",
+              "title": "User Id"
+            },
+            "grind": {
+              "type": "integer",
+              "title": "Grind"
+            },
+            "problems_per_day": {
+              "type": "integer",
+              "title": "Problems Per Day"
+            },
+            "noti_time": {
+              "type": "integer",
+              "title": "Noti Time"
+            },
+            "days_of_week": {
+              "type": "string",
+              "title": "Days Of Week"
+            },
+            "setting_id": {
+              "type": "integer",
+              "title": "Setting Id"
+            }
+          },
+          "type": "object",
+          "required": [
+            "user_id",
+            "grind",
+            "problems_per_day",
+            "noti_time",
+            "days_of_week",
+            "setting_id"
+          ],
+          "title": "Setting"
+        },
+        "SettingCreate": {
+          "properties": {
+            "user_id": {
+              "type": "integer",
+              "title": "User Id"
+            },
+            "grind": {
+              "type": "integer",
+              "title": "Grind"
+            },
+            "problems_per_day": {
+              "type": "integer",
+              "title": "Problems Per Day"
+            },
+            "noti_time": {
+              "type": "integer",
+              "title": "Noti Time"
+            },
+            "days_of_week": {
+              "type": "string",
+              "title": "Days Of Week"
+            }
+          },
+          "type": "object",
+          "required": [
+            "user_id",
+            "grind",
+            "problems_per_day",
+            "noti_time",
+            "days_of_week"
+          ],
+          "title": "SettingCreate"
+        },
+        "User": {
+          "properties": {
+            "username": {
+              "type": "string",
+              "title": "Username"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "title": "Email"
+            },
+            "user_id": {
+              "type": "integer",
+              "title": "User Id"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "title": "Created At"
+            }
+          },
+          "type": "object",
+          "required": [
+            "username",
+            "email",
+            "user_id",
+            "created_at"
+          ],
+          "title": "User"
+        },
+        "UserCreate": {
+          "properties": {
+            "username": {
+              "type": "string",
+              "title": "Username"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "title": "Email"
+            },
+            "password": {
+              "type": "string",
+              "title": "Password"
+            }
+          },
+          "type": "object",
+          "required": [
+            "username",
+            "email",
+            "password"
+          ],
+          "title": "UserCreate"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      }
+    }
+  }

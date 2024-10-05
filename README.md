@@ -10,6 +10,10 @@ pip freeze > requirements.txt
 
 uvicorn app.main:app --reload
 
+npm install
+make a postgres db, make a user named github_user
+make the password abc123 and then it should work
+
 cd study-app
 npm install
 npm run dev

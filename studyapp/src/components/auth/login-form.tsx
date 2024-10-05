@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import Cookies from 'js-cookie';
-import { loginUser } from '@/lib/api';
+import { loginUser, setAuthToken } from '@/lib/api';
+import axios from 'axios';
 
 interface LoginFormProps {
   onSuccess: () => void;
@@ -24,11 +26,16 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
 
     try {
       const response = await loginUser(email, password);
-      Cookies.set('userToken', response.token, { expires: 7 });
+      Cookies.set('userToken', response.access_token, { expires: 7 });
       Cookies.set('userId', response.user_id.toString(), { expires: 7 });
+      setAuthToken(response.access_token);
       onSuccess();
     } catch (err) {
-      setError('Invalid email or password');
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.detail || 'Invalid credentials');
+      } else {
+        setError('An error occurred during login');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -57,7 +64,9 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
         />
       </div>
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading ? "Logging in..." : "Login"}

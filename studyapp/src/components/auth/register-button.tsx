@@ -2,10 +2,12 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { RegisterForm } from './register-form';
+import { useNavigate } from 'react-router-dom';
 import { UserPlus } from 'lucide-react';
 
 export function RegisterButton() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -22,7 +24,7 @@ export function RegisterButton() {
             Sign up for a new account to get started
           </DialogDescription>
         </DialogHeader>
-        <RegisterForm onSuccess={() => setIsOpen(false)} />
+        <RegisterForm onSuccess={() => {setIsOpen(false);navigate('/home');}} />
       </DialogContent>
     </Dialog>
   );

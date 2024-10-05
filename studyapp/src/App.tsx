@@ -1,10 +1,19 @@
-import { LandingCard } from './components/landing-card';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from "@/components/pages/Home";
+import LandingPage from "@/components/pages/LandingPage";
+import SettingsPage from "@/components/pages/Settings";
+import LogoutPage from "@/components/pages/Logout";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <LandingCard />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/logout" element={<LogoutPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

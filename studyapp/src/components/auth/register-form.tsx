@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import Cookies from 'js-cookie';
-import { registerUser } from '@/lib/api';
+import { registerUser, setAuthToken } from '@/lib/api';
+import axios from 'axios';
 
 interface RegisterFormProps {
   onSuccess: () => void;
@@ -12,18 +14,32 @@ interface RegisterFormProps {
 export function RegisterForm({ onSuccess }: RegisterFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
-    const formData = new FormData(e.currentTarget);
-    const username = formData.get('username') as string;
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    const confirmPassword = formData.get('confirmPassword') as string;
-
+    // Basic input validation
+    if (!validateEmail(email)) {
+      setError('Invalid email format');
+      setIsLoading(false);
+      return;
+    }
+    if (username.length < 3) {
+      setError('Username must be at least 3 characters long');
+      setIsLoading(false);
+      return;
+    }
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      setIsLoading(false);
+      return;
+    }
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       setIsLoading(false);
@@ -32,14 +48,24 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
 
     try {
       const response = await registerUser(username, email, password);
-      Cookies.set('userToken', response.token, { expires: 7 });
+      Cookies.set('userToken', response.access_token, { expires: 7 });
       Cookies.set('userId', response.user_id.toString(), { expires: 7 });
+      setAuthToken(response.access_token);
       onSuccess();
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Registration failed');
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.detail || 'Registration failed');
+      } else {
+        setError('An error occurred during registration');
+      }
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const validateEmail = (email: string): boolean => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   };
 
   return (
@@ -51,6 +77,8 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
           name="username"
           placeholder="Choose a username"
           required
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div className="space-y-2">
@@ -61,6 +89,8 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
           type="email"
           placeholder="Enter your email"
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="space-y-2">
@@ -71,6 +101,8 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
           type="password"
           placeholder="Choose a password"
           required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className="space-y-2">
@@ -81,10 +113,14 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
           type="password"
           placeholder="Confirm your password"
           required
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading ? "Creating account..." : "Register"}

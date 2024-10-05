@@ -3,8 +3,9 @@ from datetime import datetime
 from typing import Optional
 
 class ItemBase(BaseModel):
+    user_id: int
+    tag_id: int
     name: str
-    tag: Optional[str] = None
     difficulty: Optional[str] = None
     number: Optional[int] = None
     src: Optional[str] = None

@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { LoginForm } from './login-form';
 import { LogIn } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export function LoginButton() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -22,7 +24,7 @@ export function LoginButton() {
             Enter your credentials to access your account
           </DialogDescription>
         </DialogHeader>
-        <LoginForm onSuccess={() => setIsOpen(false)} />
+        <LoginForm onSuccess={() => {setIsOpen(false);navigate('/home');}} />
       </DialogContent>
     </Dialog>
   );

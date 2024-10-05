@@ -14,6 +14,9 @@ npm install
 make a postgres db, make a user named github_user
 make the password abc123 and then it should work
 
+
+python -m app.database.init_db
+
 cd study-app
 npm install
 npm run dev
@@ -24,27 +27,3 @@ npm run dev
 ## email notis in the morning (newsletter style)
 ## schedule X_item @ 4:00PM
 ## todo's for review
-
-
-react-problemsolver/
-├── src/
-│   ├── components/
-│   │   ├── ui/
-│   │   │   ├── button.tsx
-│   │   │   ├── card.tsx
-│   │   │   ├── dialog.tsx
-│   │   │   ├── input.tsx
-│   │   │   └── label.tsx
-│   │   ├── auth/
-│   │   │   ├── login-button.tsx
-│   │   │   ├── register-button.tsx
-│   │   │   ├── login-form.tsx
-│   │   │   └── register-form.tsx
-│   │   └── landing-card.tsx
-│   ├── lib/
-│   │   └── api.ts
-│   ├── App.tsx
-│   ├── index.tsx
-│   └── index.css
-├── package.json
-└── vite.config.ts

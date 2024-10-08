@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from ..database.db import get_db
 from ..models.attempt import Attempt
 from ..schemas.attempt import AttemptCreate, Attempt as AttemptSchema
@@ -34,10 +34,17 @@ def create_attempt(attempt: AttemptCreate, db: Session = Depends(get_db)):
     return db_attempt
 
 @router.get("/{user_id}", response_model=List[AttemptSchema])
-def read_attempts(user_id: int, db: Session = Depends(get_db)):
-    attempts = db.query(Attempt).filter(Attempt.user_id == user_id).all()
+def read_attempts(user_id: int, tag_id: Optional[str] = Query(None), db: Session = Depends(get_db)):
+    # Fetch attempts by user_id, optionally filtering by tag_id
+    query = db.query(Attempt).filter(Attempt.user_id == user_id)
+    
+    if tag_id:
+        query = query.filter(Attempt.tag == tag_id)
+    
+    attempts = query.all()
     if not attempts:
         raise HTTPException(status_code=404, detail="Attempts not found")
+    
     return attempts
 
 @router.put("/{attempt_id}", response_model=AttemptSchema)

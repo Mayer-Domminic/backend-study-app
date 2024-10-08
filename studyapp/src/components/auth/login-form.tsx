@@ -27,6 +27,8 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
     try {
       const response = await loginUser(email, password);
       Cookies.set('userToken', response.access_token, { expires: 7 });
+      console.log(response.user_id)
+      console.log(response)
       Cookies.set('userId', response.user_id.toString(), { expires: 7 });
       setAuthToken(response.access_token);
       onSuccess();

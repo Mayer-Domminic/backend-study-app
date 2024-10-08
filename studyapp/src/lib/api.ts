@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie'
 
 const api = axios.create({
   baseURL: 'http://localhost:8000',
@@ -60,10 +61,8 @@ export const setAuthToken = (token: string) => {
 };
 
 export const logoutUser = async () => {
-  // Remove token and user ID from cookies
-  //Cookies.remove('userToken');
-  //Cookies.remove('userId');
-  // Optionally, reset the authorization header
+  Cookies.remove('userToken');
+  Cookies.remove('userId');
   delete api.defaults.headers.common['Authorization'];
 };
 
@@ -78,10 +77,14 @@ export interface Item {
   created_at: string;      // Corresponds to created_at
 }
 
+export interface GroupedItems {
+  [key: number]: Item[];
+}
+
 
 export const getUserItems = async (userId: number): Promise<Item[]> => {
   try {
-    const response = await api.get(`/items/user/${userId}`);
+    const response = await api.get(`/items/?user_id=${userId}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -109,3 +112,11 @@ export const updateUserSettings = async (userId: number, settings: Partial<UserS
 };
 
 
+export const getCurrentUser = async (): Promise<UserResponse> => {
+  const response = await api.get<UserResponse>('/users/me', {
+    headers: {
+      Authorization: `Bearer ${Cookies.get('userToken')}`,
+    },
+  });
+  return response.data;
+};
